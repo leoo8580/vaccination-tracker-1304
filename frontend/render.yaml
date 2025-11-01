@@ -1,16 +1,10 @@
 services:
-  - type: static
+  - type: web
     name: vaccination-tracker-frontend
-    buildCommand: npm install && CI=false npm run build
+    env: static
+    buildCommand: chmod +x render-build.sh && ./render-build.sh
     publishDir: build
-    staticPublishPath: /
-    envVars:
-      - key: NODE_VERSION
-        value: 16.x
-      - key: NODE_ENV
-        value: production
-    headers:
-      - source: /*
-        headers:
-          - key: Cache-Control
-            value: no-cache
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
