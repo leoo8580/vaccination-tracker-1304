@@ -1,3 +1,4 @@
 #!/bin/bash
 npm install --legacy-peer-deps
-npm run build
+npm install react-scripts --save
+npx react-scripts build
