@@ -32,10 +32,14 @@ A full-stack MERN application for tracking vaccinations, managing patients, and 
 ## Configuration
 
 1. Create a `.env` file in the backend directory:
+   - Copy `.env.example` to `.env`
+   - Replace the placeholder values with your actual MongoDB connection string
+   - Example structure (DO NOT USE THESE VALUES):
    ```
-   MONGODB_URI=mongodb://localhost:27017/vaccination-tracker
-   PORT=5000
+   MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<database>
+   PORT=5001
    ```
+   Note: Never commit your actual .env file or share your MongoDB connection string!
 
 ## Running the Application
 
