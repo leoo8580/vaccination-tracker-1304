@@ -1,11 +1,23 @@
-services:
-  - type: web
-    name: vaxtrack-frontend
-    env: static
-    rootDir: frontend
-    buildCommand: cd frontend && npm install && npm run build
-    staticPublishPath: frontend/build
-    headers:
-      - path: /*
-        name: Cache-Control
-        value: no-cache
+services:services:
+
+  - type: web  - type: web
+
+    name: vaxtrack-frontend    name: vaxtrack-frontend
+
+    env: static    env: static
+
+    buildCommand: cd frontend && npm install && npm run build    rootDir: frontend
+
+    staticPublishPath: ./frontend/build    buildCommand: cd frontend && npm install && npm run build
+
+    envVars:    staticPublishPath: frontend/build
+
+      - key: NODE_VERSION    headers:
+
+        value: 16      - path: /*
+
+    routes:        name: Cache-Control
+
+      - type: rewrite        value: no-cache
+        source: /*
+        destination: /index.html
