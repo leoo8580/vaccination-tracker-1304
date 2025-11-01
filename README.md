@@ -2,6 +2,12 @@
 
 A full-stack MERN application for tracking vaccinations, managing patients, and maintaining vaccination records.
 
+## Deployment
+
+The application is deployed and accessible at:
+- Frontend: [https://vaxtrak-frontend.onrender.com](https://vaxtrak-frontend.onrender.com)
+- Backend: [https://vaxtrak-backend.onrender.com](https://vaxtrak-backend.onrender.com)
+
 ## Features
 
 - Vaccine Management: Add, edit, and delete vaccine information
