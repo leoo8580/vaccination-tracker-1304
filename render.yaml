@@ -1,17 +1,30 @@
-services:services:services:
+services:services:services:services:
 
   - type: web
 
-    name: vaxtrack-frontend  - type: web  - type: web
+    name: vaxtrack-frontend  - type: web
 
     env: static
 
-    rootDir: frontend    name: vaxtrack-frontend    name: vaxtrack-frontend
+    buildCommand: npm install && npm run build    name: vaxtrack-frontend  - type: web  - type: web
 
-    buildCommand: npm install && npm run build
+    staticPublishPath: ./build
 
-    staticPublishPath: build    env: static    env: static
+    headers:    env: static
 
+      - path: /*
+
+        name: Cache-Control    rootDir: frontend    name: vaxtrack-frontend    name: vaxtrack-frontend
+
+        value: no-cache
+
+    routes:    buildCommand: npm install && npm run build
+
+      - type: rewrite
+
+        source: /*    staticPublishPath: build    env: static    env: static
+
+        destination: /index.html
     headers:
 
       - path: /*    buildCommand: cd frontend && npm install && npm run build    rootDir: frontend
