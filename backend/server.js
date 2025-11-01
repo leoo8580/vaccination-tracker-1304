@@ -39,6 +39,11 @@ app.use('/api/vaccines', vaccineRoutes);
 app.use('/api/patients', patientRoutes);
 app.use('/api/records', recordRoutes);
 
+// Health check endpoint for Render
+app.get('/api/health', (req, res) => {
+  res.status(200).json({ status: 'ok', message: 'Server is healthy' });
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);

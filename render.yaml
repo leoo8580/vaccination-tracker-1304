@@ -1,35 +1,66 @@
-services:services:services:services:services:
+services:services:services:services:services:services:
+
+  # Frontend Service
+
+  - type: web  - type: web
+
+    name: vaxtrack-frontend
+
+    env: static    name: vaxtrack-frontend  - type: web
+
+    buildCommand: npm install && npm run build
+
+    staticPublishPath: build    env: static
+
+    headers:
+
+      - path: /*    buildCommand: npm install && npm run build    name: vaxtrack-frontend  - type: web
+
+        name: Cache-Control
+
+        value: no-cache    staticPublishPath: build
+
+    routes:
+
+      - type: rewrite    headers:    env: static
+
+        source: /*
+
+        destination: /index.html      - path: /*
+
+
+
+  # Backend Service        name: Cache-Control    buildCommand: npm install && npm run build    name: vaxtrack-frontend  - type: web  - type: web
 
   - type: web
 
-    name: vaxtrack-frontend  - type: web
+    name: vaxtrack-backend        value: no-cache
 
-    env: static
+    env: node
 
-    buildCommand: npm install && npm run build    name: vaxtrack-frontend  - type: web
+    region: oregon    routes:    staticPublishPath: ./build
 
-    staticPublishPath: build
+    plan: free
 
-    headers:    env: static
+    buildCommand: cd backend && npm install      - type: rewrite
 
-      - path: /*
+    startCommand: cd backend && node server.js
 
-        name: Cache-Control    buildCommand: npm install && npm run build    name: vaxtrack-frontend  - type: web  - type: web
-
-        value: no-cache
-
-    routes:    staticPublishPath: ./build
-
-      - type: rewrite
-
-        source: /*    headers:    env: static
-
-        destination: /index.html
-
-    envVars:      - path: /*
+    envVars:        source: /*    headers:    env: static
 
       - key: NODE_VERSION
 
+        value: 16        destination: /index.html
+
+      - key: MONGODB_URI
+
+        sync: false # This will be manually set in Render dashboard    envVars:      - path: /*
+
+      - key: PORT
+
+        value: 5001      - key: NODE_VERSION
+
+    healthCheckPath: /api/health
         value: 16        name: Cache-Control    rootDir: frontend    name: vaxtrack-frontend    name: vaxtrack-frontend
 
       - key: CI
