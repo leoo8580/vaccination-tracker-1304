@@ -2,9 +2,20 @@ services:
   - type: web
     name: vaccination-tracker-frontend
     env: static
+    rootDir: .
     buildCommand: npm install && npm run build
-    staticPublishPath: ./build
+    staticPublishPath: build
     pullRequestPreviewsEnabled: true
+    buildFilter:
+      paths:
+        - src/**
+        - public/**
+        - package.json
+        - package-lock.json
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: no-cache
     envVars:
       - key: NODE_VERSION
         value: 16.x
